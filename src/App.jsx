@@ -1,7 +1,5 @@
 import React from 'react'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import CalendarIntegration from './components/CalendarIntegration';
-import ClassReminders from './components/ClassReminders';
 import QnA from './components/QnA';
 import TaskPlanner from './components/TaskPlanner';
 import Home from './components/Home';
@@ -14,15 +12,6 @@ const router = createBrowserRouter([
         {
           index: true,
           element: <Home/>
-        },
-        {
-        index: true,
-          path: '/calendar',
-          element: <CalendarIntegration />
-        },
-        {
-          path: '/class',
-          element: <ClassReminders />
         },
         {
           path: '/qna',

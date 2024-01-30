@@ -1,35 +1,38 @@
 import React, { useState } from 'react';
+import Dashboard from './Dashboard';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 const TaskPlanner = () => {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
-
-  const handleTaskChange = (event) => {
-    setNewTask(event.target.value);
-  };
+  const { transcript, resetTranscript } = useSpeechRecognition();
 
   const addTask = () => {
-    if (newTask.trim() !== '') {
-      setTasks([...tasks, newTask]);
-      setNewTask('');
+    if (transcript.trim() !== '') {
+      setTasks([...tasks, transcript]);
+      resetTranscript();
     }
   };
 
+  const deleteTask = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
+  };
+
   return (
-    <div>
-      <input
-        type="text"
-        value={newTask}
-        onChange={handleTaskChange}
-        placeholder="Ingrese una tarea"
-      />
-      <button onClick={addTask}>Agregar Tarea</button>
+    <>
+      <Dashboard />
+      <button onClick={addTask}>Agregar Tarea por Voz</button>
+      <button onClick={SpeechRecognition.startListening}>Iniciar Reconocimiento de Voz</button>
+      <button onClick={SpeechRecognition.stopListening}>Detener Reconocimiento de Voz</button>
       <ul>
         {tasks.map((task, index) => (
-          <li key={index}>{task}</li>
+          <li key={index}>
+            <button onClick={() => deleteTask(index)}>❌</button> {task}
+          </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

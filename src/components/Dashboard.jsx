@@ -8,14 +8,6 @@ function Dashboard() {
                 <Toolbar >
                     <Grid container>
 
-                         <Grid item xs={12} md={3} lg={3}>        
-                            <Link to={'/calendar'} style={{textDecoration:'none', color:'white'}}>Calendario</Link>
-                        </Grid>
- 
-                        <Grid item xs={12} md={3} lg={3}>        
-                            <Link to={'/class'} style={{textDecoration:'none', color:'white'}}>Recordatorio Clases</Link>
-                        </Grid>
-
                         <Grid item xs={12} md={3} lg={3}>        
                             <Link to={'/qna'} style={{textDecoration:'none', color:'white'}}>Preguntas y Respuestas</Link>
                         </Grid>
